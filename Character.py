@@ -1,4 +1,4 @@
-
+from npc_data import monsters
 
 class Character:
 
@@ -10,15 +10,17 @@ class Character:
 
 class Player(Character):
 
-    def __init__(self, name, ap, hp):
-        super().__init__(name, ap, hp)
+    def __init__(self):
+        super().__init__("hej", 5, 20)
         self.inventory = "hej"
         self.current_floor = 0
+        self.armor = 1
 
 
 class Npc(Character):
 
-    def __init__(self, name, ap, hp):
-        super().__init__(name, ap,  hp)
+    def __init__(self, i):
+        super().__init__(monsters[i]['name'], monsters[i]['ap'], monsters[i]['hp'])
+
 
 

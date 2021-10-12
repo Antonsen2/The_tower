@@ -1,14 +1,15 @@
+
 class Map:
 
     def __init__(self):
         self.floors = [
-            {"name": "You are now on floor 0",
-             "items": [],
-             "challenge": ""
+            {"name": "You are now on ground floor",
+             "items": ["i1"],
+             "challenge": "id1"
              },
             {"name": "You are now on floor 1",
              "items": [],
-             "challenge": ""
+             "challenge": "id2"
              },
             {"name": "You are now on floor 2",
              "items": [],
@@ -36,5 +37,10 @@ class Map:
              },
         ]
         self.map2 = []
-        [self.map2.append(self.floors[x]["name"]) for x in range(7)]
+        [self.map2.append(self.floors[x]) for x in range(7)]
+
+
+
+
+
 
