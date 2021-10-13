@@ -1,9 +1,11 @@
+import random
+
 monsters = [
     {
         "id": "id1",
         "name": "skeleton",
-        "hp": 100,
-        "ap": 10,
+        "hp": random.randrange(80, 120),
+        "ap": 5,
         "drop": "axe"
 
     },

@@ -1,19 +1,21 @@
-from Character import Player, Npc
+import random
+from game.Character import Player, Npc
 from Map import Map
-from item_data import items
-from npc_data import monsters
+from game.fight import Fight
+from game.floorchallenge import FloorChallenge
+from items import Items
 
 
 class Game:
     def __init__(self):
         self.map = Map()
         self.player = Player()
+        self.npc = Npc(self.player.current_floor)
         self.running = True
         self.floor_challenge = None
         self.fight = Fight()
         self.items = Items()
-        self.engage = None
-
+        self.engage = False
 
     def run(self):
         print("You can see all commands by typing: commands")
@@ -21,14 +23,12 @@ class Game:
             self.update_floor_info()
             self.print_floor_info()
             self.user_input()
-           # self.items.current_item_in_room()
-
         print("Thanks for playing the game")
 
     def update_floor_info(self):
         self.floor_challenge = FloorChallenge(self.player.current_floor)
         if self.engage:
-            self.fight.engage(self.player, self.floor_challenge.enemy)
+            self.battle(self.player, self.floor_challenge.enemy)
 
     def print_floor_info(self):
         print(self.map.map2[self.player.current_floor]['name'])
@@ -39,12 +39,14 @@ class Game:
             print("You can't go there")
         if self.player.current_floor != len(self.map.map2) - 1:
             self.player.current_floor += 1
+            self.npc = Npc(self.player.current_floor)
         else:
             print("You are on the top floor")
 
     def descend(self):
         if self.player.current_floor > 0:
             self.player.current_floor -= 1
+            self.npc = Npc(self.player.current_floor)
         else:
             print("You can't go any lower")
 
@@ -71,47 +73,19 @@ class Game:
         print("The commands to descend are: descend, climb down and down")
         print("The commands to stop the game are: quit, exit and stop")
 
-
-class Fight:
-
-    def engage(self, player, npc):
+    def battle(self, player, npc):
         print("You engage the enemy, you can attack the enemy or you can defend yourself from their attack")
         while player.hp > 0 and npc.hp > 0:
+            npc_damage = random.randrange(1, npc.ap + 1) - player.armor
             command = input("What would you like to do? ")
             if len(command) > 0:
                 match command.lower().split():
                     case ["attack"]:
-                        player.hp -= npc.ap - player.armor
-                        npc.hp -= player.ap
-                        print(player.hp)
+                        self.fight.attack(self.npc, self.player, npc_damage)
+
                     case ["defend"]:
-                        player.hp -= npc.ap - player.armor * 3
-                        npc.hp -= player.armor
-                        print(player.hp)
+                        self.fight.defend(self.npc, self.player, npc_damage)
 
-
-class FloorChallenge:
-    def __init__(self, current_floor):
-        self.current_floor = current_floor
-        self.enemy = Npc(current_floor)
-
-    def print_current_challenge(self):
-        print("there is a", self.enemy.name, "stopping you from climbing up")
-
-
-
-class Items:
-    def __init__(self):
-        self.item = None
-        self.map = Map()
-        self.player = Player()
-
-    def current_item_in_room(self):
-        for self.item in items:
-            if self.item['id'] in self.map.map2[self.player.current_floor]['items']:
-                print("There is a", self.item['name'], "that you can open in this room")
-
-    #  problem.. den uppdaterar inte current_floor.. finns det något snyygare sätt att göra detta än vad jag har gjort ovanför?
 
 
 def main():
