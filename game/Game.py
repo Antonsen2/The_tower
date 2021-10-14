@@ -14,7 +14,7 @@ class Game:
         self.running = True
         self.floor_challenge = None
         self.fight = Fight()
-        self.items = Items()
+        self.items = Items(self.player, self.map)
         self.engage = False
 
     def run(self):
@@ -33,6 +33,7 @@ class Game:
     def print_floor_info(self):
         print(self.map.map2[self.player.current_floor]['name'])
         self.floor_challenge.print_current_challenge()
+        self.items.current_item_in_room()
 
     def climb_up(self):
         if self.player.current_floor > len(self.map.map2) - 1:
@@ -61,11 +62,13 @@ class Game:
                     self.climb_up()
                 case ["descend"] | ["climb down"] | ["down"]:
                     self.descend()
-                case ["quit"] | ["exit"] | ["stop"]:
-                    self.running = False
+                case ["open"]:
+                    self.items.open()
                 case ["fight"] | ["engage"] | ["attack"]:
                     self.engage = True
                     print("attacking")
+                case ["quit"] | ["exit"] | ["stop"]:
+                    self.running = False
 
     def commands(self):
 
@@ -85,6 +88,7 @@ class Game:
 
                     case ["defend"]:
                         self.fight.defend(self.npc, self.player, npc_damage)
+
 
 
 

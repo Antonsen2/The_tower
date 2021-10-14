@@ -8,7 +8,7 @@ class Map:
              "challenge": "id1"
              },
             {"name": "You are now on floor 1",
-             "items": [],
+             "items": ["i2"],
              "challenge": "id2"
              },
             {"name": "You are now on floor 2",

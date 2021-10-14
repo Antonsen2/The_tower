@@ -4,15 +4,35 @@ from data.item_data import items
 
 
 class Items:
-    def __init__(self):
+    def __init__(self, player, map):
         self.item = None
-        self.map = Map()
-        self.player = Player()
+        self.player = player
+        self.map = map
 
     def current_item_in_room(self):
         for self.item in items:
             if self.item['id'] in self.map.map2[self.player.current_floor]['items']:
-                print("There is a", self.item['name'], "that you can open in this room")
+                print("There is ", self.item['description'], "")
 
-    #  problem.. den uppdaterar inte current_floor.. finns det något snyygare sätt att göra detta än vad jag har gjort ovanför?
+    def open(self):
+        ids = []
+        for item in items:
+           # if item['id'] in self.map.map2[self.player.current_floor]['items']:
+            if item["container"]:
+                for i in item['contains']:
+                    ids.append(i)
+        for item in items:
+            for id2 in ids:
+                if item['id'] == id2:
+                    print(item['name'])
+
+
+
+
+                  #  if item["contains"][0] == item['id']:
+                       # print(items['name'])
+                       #  print(f"the chest contains {self.item['contains'][0]}")
+                    # coomand = input("")
+
+
 
