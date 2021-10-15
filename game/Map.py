@@ -5,11 +5,11 @@ class Map:
         self.floors = [
             {"name": "You are now on ground floor",
              "items": ["i1"],
-             "challenge": "id1"
+             "challenge": ["id1"]
              },
             {"name": "You are now on floor 1",
              "items": ["i2"],
-             "challenge": "id2"
+             "challenge": ["id2"]
              },
             {"name": "You are now on floor 2",
              "items": [],

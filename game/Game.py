@@ -17,6 +17,7 @@ class Game:
         self.items = Items(self.player, self.map)
         self.engage = False
 
+
     def run(self):
         print("You can see all commands by typing: commands")
         while self.running:
@@ -26,7 +27,7 @@ class Game:
         print("Thanks for playing the game")
 
     def update_floor_info(self):
-        self.floor_challenge = FloorChallenge(self.player.current_floor)
+        self.floor_challenge = FloorChallenge(self.player.current_floor, self.npc)
         if self.engage:
             self.battle(self.player, self.floor_challenge.enemy)
 
@@ -34,6 +35,7 @@ class Game:
         print(self.map.map2[self.player.current_floor]['name'])
         self.floor_challenge.print_current_challenge()
         self.items.current_item_in_room()
+
 
     def climb_up(self):
         if self.player.current_floor > len(self.map.map2) - 1:
@@ -62,13 +64,16 @@ class Game:
                     self.climb_up()
                 case ["descend"] | ["climb down"] | ["down"]:
                     self.descend()
+                case ["inventory"] | ["inv"] | ["bag"]:
+                    self.player.print_inventory()
                 case ["open"]:
-                    self.items.open()
+                    self.items.open_chest()
                 case ["fight"] | ["engage"] | ["attack"]:
                     self.engage = True
-                    print("attacking")
                 case ["quit"] | ["exit"] | ["stop"]:
                     self.running = False
+                case _:
+                    print(f"I dont understand {command}")
 
     def commands(self):
 

@@ -2,7 +2,7 @@ import random
 
 monsters = [
     {
-        "id": "id1",
+        "id": ["id1"],
         "name": "skeleton",
         "hp": random.randrange(80, 120),
         "ap": 5,
@@ -10,13 +10,16 @@ monsters = [
 
     },
     {
-        "id": "id2",
+        "id": ["id2"],
         "name": "bear",
         "hp": 150,
         "ap": 7,
         "drop": "sword"
 
-    }]
+    }
+
+
+]
 #     {
 #         "id": " ",
 #         "name": " ",
