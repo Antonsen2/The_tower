@@ -13,31 +13,31 @@ class Map:
              },
             {"name": "You are now on floor 2",
              "items": [],
-             "challenge": ""
+             "challenge": ["id3"]
              },
             {"name": "You are now on floor 3",
              "items": [],
-             "challenge": ""
+             "challenge": ["id4"]
              },
             {"name": "You are now on floor 4",
              "items": [],
-             "challenge": ""
+             "challenge": ["id5"]
              },
             {"name": "You are now on floor 5",
              "items": [],
-             "challenge": ""
+             "challenge": ["id6"]
              },
             {"name": "You are now on floor 6",
              "items": [],
-             "challenge": ""
+             "challenge": ["id7"]
              },
             {"name": "You are now on floor 7",
              "items": [],
-             "challenge": ""
+             "challenge": ["id8"]
              },
         ]
         self.map2 = []
-        [self.map2.append(self.floors[x]) for x in range(7)]
+        [self.map2.append(self.floors[x]) for x in range(8)]
 
 
 

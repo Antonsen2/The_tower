@@ -1,6 +1,7 @@
 from game.Character import Player
 from Map import Map
 from data.item_data import items
+#  import floorchallenge
 
 
 class Items:
@@ -8,7 +9,7 @@ class Items:
         self.item = None
         self.player = player
         self.map = map
-
+        # self.floorchallenge = floorchallenge
 
     def current_item_in_room(self):
         for self.item in items:
@@ -33,6 +34,7 @@ class Items:
 
     def open_chest(self):
         chest_open = True
+        #  ToDo only open chest if puzzle is complete.. this is a project for tomorrow
         while chest_open:
             self.print_chest()
             command1 = input("What item would you like to pick up? ")
@@ -50,31 +52,9 @@ class Items:
                                 self.player.inventory.append(id)
                                 if len(item['contains']) == 0:
                                     chest_open = False
-        print("poof! the chest magically disappear")
 
+                    print("Poof the chest magicly dissapears")
 
-            #
-            # if len(in_chest) == 0:
-            #     chest_open = False
-            #     print("poof! the chest magically disappear")
-            # if len(command1) > 0:
-            #     match command1.lower().split():
-            #         case ["pick", *in_chest] | ["pick", "up", *in_chest] | ["get", *in_chest]:
-            #             for x in in_chest:
-            #                 in_chest.remove(x)
-            #                 print("you pick up the", x)
-            #                 self.player.inventory.append(x)
-            #         case ["close"] | ["exit"]:
-            #             chest_open = False
-            #             print("poof the chest magically disappear")
-            #
-
-
-
-                  #  if item["contains"][0] == item['id']:
-                       # print(items['name'])
-                       #  print(f"the chest contains {self.item['contains'][0]}")
-                    # coomand = input("")
 
 
 

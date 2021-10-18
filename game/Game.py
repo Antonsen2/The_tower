@@ -44,7 +44,7 @@ class Game:
             self.player.current_floor += 1
             self.npc = Npc(self.player.current_floor)
         else:
-            print("You are on the top floor")
+            print("You are on the top floor, you can't go any further")
 
     def descend(self):
         if self.player.current_floor > 0:
@@ -66,7 +66,8 @@ class Game:
                     self.descend()
                 case ["inventory"] | ["inv"] | ["bag"]:
                     self.player.print_inventory()
-                case ["open"]:
+                case ["open"] | ["open chest"]:
+                    self.floor_challenge.chest_challenge()
                     self.items.open_chest()
                 case ["fight"] | ["engage"] | ["attack"]:
                     self.engage = True
@@ -79,6 +80,9 @@ class Game:
 
         print("The commands to climb up are: climb, climb up and up")
         print("The commands to descend are: descend, climb down and down")
+        print("The commands to check your inventory is: inventory, inv and bag")
+        print("the commands to open the chest is: open and open chest")
+        print("The commands to fight is: fight, engage and attack")
         print("The commands to stop the game are: quit, exit and stop")
 
     def battle(self, player, npc):
@@ -93,8 +97,6 @@ class Game:
 
                     case ["defend"]:
                         self.fight.defend(self.npc, self.player, npc_damage)
-
-
 
 
 def main():
