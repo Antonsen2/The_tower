@@ -61,7 +61,10 @@ class Game:
                 case ["commands"]:
                     self.commands()
                 case ["climb"] | ["climb up"] | ["up"]:
-                    self.climb_up()
+                    if self.floor_challenge.enemy_dead():
+                        self.climb_up()
+                    else:
+                        print("You need to defeat the enemy")
                 case ["descend"] | ["climb down"] | ["down"]:
                     self.descend()
                 case ["inventory"] | ["inv"] | ["bag"]:
@@ -97,6 +100,12 @@ class Game:
 
                     case ["defend"]:
                         self.fight.defend(self.npc, self.player, npc_damage)
+            #ToDo fix it so that the current floors npc get removed from dict
+
+            if npc.hp <= 0:
+                self.map.map2.remove([self.player.current_floor]['challenge'])
+                #print(self.map.map2)
+
 
 
 def main():
