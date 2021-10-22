@@ -46,7 +46,6 @@ class Items:
         chest_open = True
         if self.item[0]["visible"]:
             while chest_open:
-                #  print(self.item)
                 self.print_chest()
                 command1 = input("What item would you like to pick up? ")
                 match command1.lower().split():
@@ -60,24 +59,6 @@ class Items:
                     case _:
                         print(f"I dont understand {command1}")
 
-
-
-
-                # command1 = input("What item would you like to pick up? ")
-                # if command1 == 'none':
-                #     chest_open = False
-                # else:
-                #     for item in items:
-                #         if item['name'] == command1:
-                #             command1 = item['id']
-                #     for item in items:
-                #         if item['container']:
-                #             for id in item['contains']:
-                #                 if id == command1:
-                #                     item['contains'].remove(id)
-                #                     self.player.inventory.append(id)
-                #                     if len(item['contains']) == 0:
-                #                         chest_open = False
 
 
 

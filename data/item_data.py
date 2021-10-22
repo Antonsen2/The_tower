@@ -6,6 +6,7 @@ items = [
         "lock": "puzzle",
         "contains": ["i2", "i3"],
         "pick_up": False,
+        "equippable": False,
         "container": True,
         "visible": True
 
@@ -17,6 +18,7 @@ items = [
         "description": "a small but sharp knife",
         "bonus_ap": 10,
         "pick_up": True,
+        "equippable": True,
         "container": False,
         "visible": True
 
@@ -27,6 +29,7 @@ items = [
         "description": "a health potion that can heal you",
         "heals": 10,
         "pick_up": True,
+        "equippable": False,
         "container": False,
         "visible": True
     }]

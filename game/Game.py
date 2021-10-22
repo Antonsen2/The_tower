@@ -27,9 +27,9 @@ class Game:
         print("Thanks for playing the game")
 
     def update_floor_info(self):
-        self.floor_challenge = FloorChallenge(self.player.current_floor, self.npc)
         if self.engage:
             self.battle(self.player, self.floor_challenge.enemy)
+        self.floor_challenge = FloorChallenge(self.player.current_floor, self.npc)
 
     def print_floor_info(self):
         print(self.map.map2[self.player.current_floor]['name'])
@@ -61,14 +61,19 @@ class Game:
                 case ["commands"]:
                     self.commands()
                 case ["climb"] | ["climb up"] | ["up"]:
-                    if self.floor_challenge.enemy_dead():
+                    if not self.npc:
                         self.climb_up()
                     else:
-                        print("You need to defeat the enemy")
+                        print("You need to defeat the enemy before climbing up")
                 case ["descend"] | ["climb down"] | ["down"]:
                     self.descend()
                 case ["inventory"] | ["inv"] | ["bag"]:
                     self.player.print_inventory()
+                case ["equip"]:
+                    self.player.equip()
+                    self.player.equipped_stats(self.player)
+                case ["equipped"] | ["character"]:
+                    self.player.print_equipped()
                 case ["open"] | ["open chest"]:
                     self.floor_challenge.chest_challenge()
                     self.items.open_chest()
@@ -84,6 +89,8 @@ class Game:
         print("The commands to climb up are: climb, climb up and up")
         print("The commands to descend are: descend, climb down and down")
         print("The commands to check your inventory is: inventory, inv and bag")
+        print("the command to equip something is equip")
+        print("the commands to check what items you have equipped is equipped and character")
         print("the commands to open the chest is: open and open chest")
         print("The commands to fight is: fight, engage and attack")
         print("The commands to stop the game are: quit, exit and stop")
@@ -100,11 +107,10 @@ class Game:
 
                     case ["defend"]:
                         self.fight.defend(self.npc, self.player, npc_damage)
-            #ToDo fix it so that the current floors npc get removed from dict
 
             if npc.hp <= 0:
-                self.map.map2.remove([self.player.current_floor]['challenge'])
-                #print(self.map.map2)
+                self.npc = None
+                self.engage = False
 
 
 

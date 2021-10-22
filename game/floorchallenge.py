@@ -12,16 +12,13 @@ class FloorChallenge:
         self.item = items
         self.puzzle_complete = False
 
-
-    def enemy_dead(self):
-        if self.enemy.hp <= 0:
-            self.enemy.remove(self.enemy)
-            return True
-        else:
-            return False
     def print_current_challenge(self):
-        print("there is a", self.enemy.name, "stopping you from climbing up")
-        print(type(self.enemy.hp))
+        if self.enemy:
+            print("there is a", self.enemy.name, "stopping you from climbing up")
+
+        else:
+            print("The enemy is defeated you can now climb up")
+
 
     def test(self):
         self.t.cancel()

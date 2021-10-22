@@ -7,6 +7,9 @@ class Fight:
         print(f"The {npc.name} attack you back dealing {npc_damage} damage")
         if player.hp < 0:
             player.hp = 0
+        if npc.hp < 0:
+            npc.hp = 0
+
         print(f"you have {player.hp} hp left and the {npc.name} have {npc.hp} hp left")
 
     def defend(self, npc, player, npc_damage):
