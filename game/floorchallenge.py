@@ -27,18 +27,22 @@ class FloorChallenge:
         self.in_time = False
 
     def chest_challenge(self):
-        self.t.start()
-        print("you have 3 seconds to answer this")
-        while self.in_time or not self.puzzle_complete:
-            answer = input("what is 2+2?")
-            if answer == "4" and self.in_time:
-                print("input successful, the chest opens")
-                self.puzzle_complete = True
-                self.t.cancel()
-                break
-            elif answer != "4" and self.in_time:
-                print("wrong answer try again")
-            else:
-                self.item[0]["visible"] = False
-                print("The challenge is failed, the chest disappeared")
+        if self.item[0]["visible"]:
+            self.t.start()
+            print("you have 3 seconds to answer this")
+            while self.in_time or self.puzzle_complete:
+                answer = input("what is 2+2?")
+                if answer == "4" and self.in_time:
+                    print("input successful, the chest opens")
+                    self.puzzle_complete = True
+                    self.t.cancel()
+                    break
+                elif answer != "4" and self.in_time:
+                    print("wrong answer try again")
+                else:
+                    self.item[0]["visible"] = False
+                    print("The challenge is failed, the chest disappeared")
+                    self.t.cancel()
+        else:
+            print("There is nothing to open here")
 

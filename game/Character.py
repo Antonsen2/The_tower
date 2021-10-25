@@ -27,6 +27,13 @@ class Player(Character):
         self.player = Player
 
 
+    def use_item(self, item_name, player):
+        for i in self.inventory:
+            if item_name == i["name"] and i["usable"]:
+                if item_name == "potion":
+                    player.hp += i["heals"]
+
+
     def print_inventory(self):
         print("Your inventory contains: ")
         for i in self.inventory:
@@ -49,6 +56,8 @@ class Player(Character):
     def equipped_stats(self, player):
         for i in self.equipped:
             player.ap += i["bonus_ap"]
+            if i["bonus_armor"]:
+                player.armor += i["bonus_armor"]
 
 
 

@@ -67,6 +67,12 @@ class Game:
                         print("You need to defeat the enemy before climbing up")
                 case ["descend"] | ["climb down"] | ["down"]:
                     self.descend()
+                case['get', *items] | ['pick', 'up', *items] | ['pick', *items, 'up']:
+                    for item in items:
+                        self.items.get_item(item)
+                case["use", *items]:
+                    for item in items:
+                        self.player.use_item(item, self.player)
                 case ["inventory"] | ["inv"] | ["bag"]:
                     self.player.print_inventory()
                 case ["equip"]:

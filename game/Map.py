@@ -4,11 +4,11 @@ class Map:
     def __init__(self):
         self.floors = [
             {"name": "You are now on ground floor",
-             "items": ["i1"],
+             "items": ["i1", "i5"],
              "challenge": ["id1"]
              },
             {"name": "You are now on floor 1",
-             "items": [],
+             "items": [""],
              "challenge": ["id2"]
              },
             {"name": "You are now on floor 2",
