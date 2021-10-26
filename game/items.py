@@ -1,8 +1,5 @@
-from game.Character import Player
-from Map import Map
 from data.item_data import items
-import floorchallenge
-
+from data.npc_data import monsters
 
 class Items:
     def __init__(self, player, map):
@@ -11,22 +8,19 @@ class Items:
         self.map = map
         self.floor_challenge = None
         self.found_item = []
-
+        self.monsters = monsters
 
     @staticmethod
-    def get_item(name: str) -> dict:
+    def get_current_item(name: str) -> dict:
         for item in items:
             if name == item['name']:
                 return item
 
-
-
-
-    def current_item_in_room(self):
+    def print_current_item_in_room(self):
         for item in self.item:
             if item['id'] in self.map.map2[self.player.current_floor]['items']:
                 if item["visible"]:
-                    self.found_item.append(item)
+                    # self.found_item.append(item)
                     print("There is", item['description'], "in this room")
 
     def get_item(self, item_name):
@@ -37,17 +31,23 @@ class Items:
                 break
         if found_item:
             if found_item["pick_up"]:
-                print("yellow", f"You pick up the {item_name} from the floor")
-                self.item.remove(found_item)
+                print(f"You pick up the {item_name} from the ground")
+                self.map.map2[self.player.current_floor]['items'].remove(found_item["id"])
                 self.player.inventory.append(found_item)
             else:
                 print(f"You can see the {item_name} but there is no way for you to pick it up")
         else:
             print(f"There is no {item_name} in this room")
 
+    def drop_item(self, item_name):
+        for item in self.player.inventory:
+            if item_name == item["name"]:
+                self.player.inventory.remove(item)
+                self.map.map2[self.player.current_floor]['items'].append(item["id"])
 
-    def drop_item_in_room(self):
-        pass
+    def boss_drop(self):
+        self.map.map2[self.player.current_floor]['items'].append(self.monsters[self.player.current_floor]["drop"])
+
 
 
     def print_chest(self):
@@ -63,20 +63,19 @@ class Items:
                 if item['id'] == id2:
                     print("a", item['name'])
 
-
     def open_chest(self):
 
         if self.item[0]["visible"]:
             chest_open = True
             while chest_open:
                 self.print_chest()
-                command1 = input("What item would you like to pick up? ")
+                command1 = input("You can get the items or close to chest: ")
                 match command1.lower().split():
                     case ["none"] | ["close"] | ["stop"]:
                         chest_open = False
                         self.item[0]["visible"] = False
                     case ["knife"] | ["potion"]:
-                        item = self.get_item(command1)
+                        item = self.get_current_item(command1)
                         if item:
                             self.player.inventory.append(item)
                             self.item[0]['contains'].remove(item["id"])

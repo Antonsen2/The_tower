@@ -32,23 +32,24 @@ class Player(Character):
             if item_name == i["name"] and i["usable"]:
                 if item_name == "potion":
                     player.hp += i["heals"]
-
+                    print(f"the potion heals you for {i['heals']} hp")
 
     def print_inventory(self):
         print("Your inventory contains: ")
         for i in self.inventory:
             print(i["name"])
-
-    def equip(self):
-        command2 = input("What item would you like to equip?")
+#  toDO make it so that you can only equip limited stuff. It makes no sense to be able to equip several weapons.
+    def equip(self, item_name):
         for i in self.inventory:
-            if command2 == i["name"] and i["equippable"]:
+            if item_name == i["name"] and i["equippable"]:
                 self.equipped.append(i)
                 self.inventory.remove(i)
             else:
-                print(f"You can't equip {command2}")
+                print(f"You can't equip {item_name}")
 
-    def print_equipped(self):
+    def print_character(self, player):
+        print(f"your current attack power is {player.ap}")
+        print(f"your current hit points is {player.hp}")
         print("You have the following equipped:")
         for i in self.equipped:
             print(i["name"])

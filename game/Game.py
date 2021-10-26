@@ -17,7 +17,6 @@ class Game:
         self.items = Items(self.player, self.map)
         self.engage = False
 
-
     def run(self):
         print("You can see all commands by typing: commands")
         while self.running:
@@ -34,8 +33,7 @@ class Game:
     def print_floor_info(self):
         print(self.map.map2[self.player.current_floor]['name'])
         self.floor_challenge.print_current_challenge()
-        self.items.current_item_in_room()
-
+        self.items.print_current_item_in_room()
 
     def climb_up(self):
         if self.player.current_floor > len(self.map.map2) - 1:
@@ -67,19 +65,23 @@ class Game:
                         print("You need to defeat the enemy before climbing up")
                 case ["descend"] | ["climb down"] | ["down"]:
                     self.descend()
-                case['get', *items] | ['pick', 'up', *items] | ['pick', *items, 'up']:
+                case["get", *items] | ["pick", "up", *items] | ["pick", *items, "up"]:
                     for item in items:
                         self.items.get_item(item)
+                case["drop", *items]:
+                    for item in items:
+                        self.items.drop_item(item)
                 case["use", *items]:
                     for item in items:
                         self.player.use_item(item, self.player)
                 case ["inventory"] | ["inv"] | ["bag"]:
                     self.player.print_inventory()
-                case ["equip"]:
-                    self.player.equip()
-                    self.player.equipped_stats(self.player)
-                case ["equipped"] | ["character"]:
-                    self.player.print_equipped()
+                case ["equip", *items]:
+                    for item in items:
+                        self.player.equip(item)
+                        self.player.equipped_stats(self.player)
+                case ["equipped"] | ["character"] | ["stats"]:
+                    self.player.print_character(self.player)
                 case ["open"] | ["open chest"]:
                     self.floor_challenge.chest_challenge()
                     self.items.open_chest()
@@ -88,15 +90,15 @@ class Game:
                 case ["quit"] | ["exit"] | ["stop"]:
                     self.running = False
                 case _:
-                    print(f"I dont understand {command}")
+                    print(f"I dont understand {command}, you can see a list of commands by typing commands")
 
     def commands(self):
 
         print("The commands to climb up are: climb, climb up and up")
         print("The commands to descend are: descend, climb down and down")
         print("The commands to check your inventory is: inventory, inv and bag")
-        print("the command to equip something is equip")
-        print("the commands to check what items you have equipped is equipped and character")
+        print("the command to equip something is equip and the item name")
+        print("the commands to check what items you have equipped and your stats is equipped, character and stats")
         print("the commands to open the chest is: open and open chest")
         print("The commands to fight is: fight, engage and attack")
         print("The commands to stop the game are: quit, exit and stop")
@@ -117,6 +119,7 @@ class Game:
             if npc.hp <= 0:
                 self.npc = None
                 self.engage = False
+                self.items.boss_drop()
 
 
 
