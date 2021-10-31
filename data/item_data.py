@@ -21,6 +21,7 @@ items = [
         "bonus_ap": 10,
         "usable": False,
         "pick_up": True,
+        "slot": "hands",
         "equippable": True,
         "container": False,
         "visible": True
@@ -35,6 +36,7 @@ items = [
         "heals": 10,
         "usable": True,
         "pick_up": True,
+        "slot": None,
         "equippable": False,
         "container": False,
         "visible": True
@@ -47,6 +49,7 @@ items = [
         "bonus_ap": 15,
         "usable": False,
         "pick_up": True,
+        "slot": "hands",
         "equippable": True,
         "container": False,
         "visible": True
@@ -60,6 +63,7 @@ items = [
         "bonus_ap": 0,
         "usable": False,
         "pick_up": True,
+        "slot": "hands",
         "equippable": True,
         "container": False,
         "visible": True
@@ -73,6 +77,7 @@ items = [
         "bonus_ap": 0,
         "usable": False,
         "pick_up": True,
+        "slot": "chest",
         "equippable": True,
         "container": False,
         "visible": True
@@ -86,6 +91,7 @@ items = [
         "bonus_ap": 0,
         "usable": False,
         "pick_up": True,
+        "slot": "legs",
         "equippable": True,
         "container": False,
         "visible": True

@@ -1,10 +1,8 @@
 import random
-from game.Character import Player, Npc
-from Map import Map
+from game.character import Player, Npc
+from map import Map
 from game.fight import Fight
 from game.floorchallenge import FloorChallenge
-from items import Items
-
 
 class Game:
     def __init__(self):
@@ -14,7 +12,6 @@ class Game:
         self.running = True
         self.floor_challenge = None
         self.fight = Fight()
-        self.items = Items(self.player, self.map)
         self.engage = False
 
     def run(self):
@@ -31,9 +28,12 @@ class Game:
         self.floor_challenge = FloorChallenge(self.player.current_floor, self.npc)
 
     def print_floor_info(self):
-        print(self.map.map2[self.player.current_floor]['name'])
+        current_floor = self.map.get_current_room(self.player.current_floor)
+        print(current_floor.name)
         self.floor_challenge.print_current_challenge()
-        self.items.print_current_item_in_room()
+        if len(current_floor.items) > 0:
+            found_items = [item.name for item in current_floor.items if item.visible]
+            print("Items in the room:", found_items)
 
     def climb_up(self):
         if self.player.current_floor > len(self.map.map2) - 1:
@@ -53,6 +53,7 @@ class Game:
 
     def user_input(self):
         command = input("What would you like to do? ")
+        current_floor = self.map.map2[self.player.current_floor]
 
         if len(command) > 0:
             match command.lower().split():
@@ -67,10 +68,10 @@ class Game:
                     self.descend()
                 case["get", *items] | ["pick", "up", *items] | ["pick", *items, "up"]:
                     for item in items:
-                        self.items.get_item(item)
+                        self.player.get_item(item, current_floor)
                 case["drop", *items]:
                     for item in items:
-                        self.items.drop_item(item)
+                        self.player.drop_item(item, current_floor)
                 case["use", *items]:
                     for item in items:
                         self.player.use_item(item, self.player)
@@ -79,12 +80,12 @@ class Game:
                 case ["equip", *items]:
                     for item in items:
                         self.player.equip(item)
-                        self.player.equipped_stats(self.player)
+                        # self.player.equipped_stats(self.player)
                 case ["equipped"] | ["character"] | ["stats"]:
                     self.player.print_character(self.player)
-                case ["open"] | ["open chest"]:
-                    self.floor_challenge.chest_challenge()
-                    self.items.open_chest()
+                case ["open"] | ["open", "chest"]:
+                    #self.floor_challenge.chest_challenge()
+                    self.floor_challenge.open_chest(current_floor, self.player)
                 case ["fight"] | ["engage"] | ["attack"]:
                     self.engage = True
                 case ["quit"] | ["exit"] | ["stop"]:
@@ -92,8 +93,8 @@ class Game:
                 case _:
                     print(f"I dont understand {command}, you can see a list of commands by typing commands")
 
-    def commands(self):
-
+    @staticmethod
+    def commands():
         print("The commands to climb up are: climb, climb up and up")
         print("The commands to descend are: descend, climb down and down")
         print("The commands to check your inventory is: inventory, inv and bag")
@@ -108,18 +109,20 @@ class Game:
         while player.hp > 0 and npc.hp > 0:
             npc_damage = random.randrange(1, npc.ap + 1) - player.armor
             command = input("What would you like to do? ")
+
             if len(command) > 0:
                 match command.lower().split():
                     case ["attack"]:
                         self.fight.attack(self.npc, self.player, npc_damage)
-
                     case ["defend"]:
                         self.fight.defend(self.npc, self.player, npc_damage)
 
             if npc.hp <= 0:
+                print("Congratulations! You have defeated the boss")
+                self.floor_challenge.boss_drop(self.player, self.npc)
                 self.npc = None
                 self.engage = False
-                self.items.boss_drop()
+
 
 
 
