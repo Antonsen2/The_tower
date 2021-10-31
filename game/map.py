@@ -9,5 +9,5 @@ class Map:
         floor_objects = [Floor(**f) for f in floors]
         self.map2 = [floor_objects[x] for x in range(8)]
 
-    def get_current_room(self, x):
+    def get_current_floor(self, x):
         return self.map2[x]

@@ -4,6 +4,7 @@ from map import Map
 from game.fight import Fight
 from game.floorchallenge import FloorChallenge
 
+
 class Game:
     def __init__(self):
         self.map = Map()
@@ -28,7 +29,7 @@ class Game:
         self.floor_challenge = FloorChallenge(self.player.current_floor, self.npc)
 
     def print_floor_info(self):
-        current_floor = self.map.get_current_room(self.player.current_floor)
+        current_floor = self.map.get_current_floor(self.player.current_floor)
         print(current_floor.name)
         self.floor_challenge.print_current_challenge()
         if len(current_floor.items) > 0:

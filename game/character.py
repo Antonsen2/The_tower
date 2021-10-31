@@ -67,15 +67,6 @@ class Player(Character):
         for i in self.inventory:
             print(i.name)
 
-
-    # def equip(self, item_name):
-    #     for i in self.inventory:
-    #         if item_name == i.name and i.equippable:
-    #             #self.Equipment.equip_this()
-    #             self.equip.equip_this(i)
-
-
-
     def equip(self, item_name):
 
         for i in self.inventory:

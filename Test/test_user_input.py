@@ -1,6 +1,6 @@
-def main():
-    pass
+import unittest
+import game
 
+class TestUserInput(unittest.TestCase):
 
-if __name__ == '__main__':
-    main()
+    def test_
