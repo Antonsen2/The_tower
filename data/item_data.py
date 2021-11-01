@@ -101,7 +101,33 @@ items = [
         "id": "i8",
         "name": "great axe",
         "description": "a huge axe made for chopping something else than wood",
+        "bonus_armor": 0,
+        "bonus_ap": 25,
+        "usable": False,
+        "pick_up": True,
+        "equippable": True,
+        "container": False,
+        "visible": True
+
+    },
+    {
+        "id": "i9",
+        "name": "giants club",
+        "description": "a club made by a giant for a giant",
         "bonus_armor": 5,
+        "bonus_ap": 35,
+        "usable": False,
+        "pick_up": True,
+        "equippable": True,
+        "container": False,
+        "visible": True
+
+    },
+    {
+        "id": "i10",
+        "name": "giants shield",
+        "description": "a shield made by a giant for a giant",
+        "bonus_armor": 35,
         "bonus_ap": 0,
         "usable": False,
         "pick_up": True,

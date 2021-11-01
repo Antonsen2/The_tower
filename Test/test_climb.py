@@ -1,11 +1,11 @@
 import unittest
 
-from Game import Game
+from game import Game
 
 
 class TestClimb(unittest.TestCase):
 
-    def test_climb_up(self,):
+    def test_climb_up(self):
         game = Game()
         game.climb_up()
         self.assertEqual(game.player.current_floor, 1)

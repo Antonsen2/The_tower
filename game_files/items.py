@@ -1,6 +1,6 @@
 from data.item_data import items
 from data.npc_data import monsters
-from game.utils import item_creator
+from game_files.utils import item_creator
 
 class Items:
     def __init__(self, player, map):

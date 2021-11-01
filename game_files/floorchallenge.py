@@ -1,7 +1,6 @@
-from game.character import Npc
 from threading import Timer
 from data.item_data import items
-from game.utils import item_creator
+from utils import item_creator
 
 
 class FloorChallenge:
@@ -21,9 +20,7 @@ class FloorChallenge:
         else:
             print("The enemy is defeated you can now climb up")
 
-
     def chest_challenge(self):
-
         self.t.start()
         print("you have 3 seconds to answer this")
         while self.in_time or self.puzzle_complete:
@@ -62,36 +59,25 @@ class FloorChallenge:
                     else:
                         chest_open = False
                     item.visible = False
+                    current_floor.items.remove(item)
                     while chest_open:
                         for items in self.chest:
                             print(f"the chest contains: a {items.name}")
                         command1 = input("You can get the items or close to chest: ")
+
                         match command1.lower().split():
                             case ["none"] | ["close"] | ["stop"]:
                                 chest_open = False
                             case ["knife"] | ["get", "knife"]:
                                 for item1 in self.chest:
-                                    if item1.name == command1:
+                                    if item1.name in command1:
                                         self.chest.remove(item1)
                                         player.inventory.append(item1)
                             case ["potion"] | ["get", "potion"]:
                                 for item2 in self.chest:
-                                    if item2.name == command1:
+                                    if item2.name in command1:
                                         self.chest.remove(item2)
                                         player.inventory.append(item2)
                             case _:
                                 print(f"I dont understand {command1}")
                     print("poof the chest magically disappears")
-
-    def boss_drop(self, player, npc):
-        monster_drop = []
-        if npc.drop:
-            monster_drop.append(item_creator(npc.drop))
-        for item in monster_drop:
-            print(f"The boss dropped a {item.description}")
-            print(f"The {item.name} have been added to your inventory")
-            player.inventory.append(item)
-
-
-
-

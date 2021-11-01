@@ -1,6 +1,7 @@
 import unittest
-import game
+import game_files
 
 class TestUserInput(unittest.TestCase):
 
-    def test_
+    def test_use_item(self):
+

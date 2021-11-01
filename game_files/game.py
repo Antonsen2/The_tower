@@ -1,8 +1,7 @@
-import random
-from game.character import Player, Npc
+from game_files.character import Player, Npc
 from map import Map
-from game.fight import Fight
-from game.floorchallenge import FloorChallenge
+from game_files.fight import Fight
+from game_files.floorchallenge import FloorChallenge
 
 
 class Game:
@@ -21,18 +20,21 @@ class Game:
             self.update_floor_info()
             self.print_floor_info()
             self.user_input()
-        print("Thanks for playing the game")
+        print("Thanks for playing the game_files")
 
     def update_floor_info(self):
         if self.engage:
-            self.battle(self.player, self.floor_challenge.enemy)
+            self.fight.battle(self.player, self.floor_challenge.enemy)
+        if self.npc.hp <= 0:
+            self.engage = False
+            self.npc = None
         self.floor_challenge = FloorChallenge(self.player.current_floor, self.npc)
 
     def print_floor_info(self):
         current_floor = self.map.get_current_floor(self.player.current_floor)
         print(current_floor.name)
         self.floor_challenge.print_current_challenge()
-        if len(current_floor.items) > 0:
+        if len(current_floor.items) >= 1:
             found_items = [item.name for item in current_floor.items if item.visible]
             print("Items in the room:", found_items)
 
@@ -54,7 +56,7 @@ class Game:
 
     def user_input(self):
         command = input("What would you like to do? ")
-        current_floor = self.map.map2[self.player.current_floor]
+        current_floor = self.map.get_current_floor(self.player.current_floor)
 
         if len(command) > 0:
             match command.lower().split():
@@ -67,13 +69,13 @@ class Game:
                         print("You need to defeat the enemy before climbing up")
                 case ["descend"] | ["climb down"] | ["down"]:
                     self.descend()
-                case["get", *items] | ["pick", "up", *items] | ["pick", *items, "up"]:
+                case ["get", *items] | ["pick", "up", *items] | ["pick", *items, "up"]:
                     for item in items:
                         self.player.get_item(item, current_floor)
-                case["drop", *items]:
+                case ["drop", *items]:
                     for item in items:
                         self.player.drop_item(item, current_floor)
-                case["use", *items]:
+                case ["use", *items]:
                     for item in items:
                         self.player.use_item(item, self.player)
                 case ["inventory"] | ["inv"] | ["bag"]:
@@ -81,11 +83,10 @@ class Game:
                 case ["equip", *items]:
                     for item in items:
                         self.player.equip(item)
-                        # self.player.equipped_stats(self.player)
-                case ["equipped"] | ["character"] | ["stats"]:
-                    self.player.print_character(self.player)
+                        self.player.equipment.equipment_stats()
+                case ["equipped"] | ["character"] | ["stats"] | ["equipment"]:
+                    self.player.equipment.print_equipment()
                 case ["open"] | ["open", "chest"]:
-                    #self.floor_challenge.chest_challenge()
                     self.floor_challenge.open_chest(current_floor, self.player)
                 case ["fight"] | ["engage"] | ["attack"]:
                     self.engage = True
@@ -103,38 +104,6 @@ class Game:
         print("the commands to check what items you have equipped and your stats is equipped, character and stats")
         print("the commands to open the chest is: open and open chest")
         print("The commands to fight is: fight, engage and attack")
-        print("The commands to stop the game are: quit, exit and stop")
-
-    def battle(self, player, npc):
-        print("You engage the enemy, you can attack the enemy or you can defend yourself from their attack")
-        while player.hp > 0 and npc.hp > 0:
-            npc_damage = random.randrange(1, npc.ap + 1) - player.armor
-            command = input("What would you like to do? ")
-
-            if len(command) > 0:
-                match command.lower().split():
-                    case ["attack"]:
-                        self.fight.attack(self.npc, self.player, npc_damage)
-                    case ["defend"]:
-                        self.fight.defend(self.npc, self.player, npc_damage)
-
-            if npc.hp <= 0:
-                print("Congratulations! You have defeated the boss")
-                self.floor_challenge.boss_drop(self.player, self.npc)
-                self.npc = None
-                self.engage = False
-
-
-
-
-def main():
-
-    game = Game()
-    game.run()
-
-
-if __name__ == '__main__':
-
-    main()
+        print("The commands to stop the game_files are: quit, exit and stop")
 
 

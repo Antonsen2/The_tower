@@ -1,4 +1,4 @@
-from game.utils import item_creator
+from game_files.utils import item_creator
 from item import Item
 from data.item_data import items
 
