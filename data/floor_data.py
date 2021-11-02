@@ -1,10 +1,10 @@
 floors = [
     {"name": "You are now on ground floor",
-     "items": ["i1", "i4"],
+     "items": ["i1"],
      "challenge": ["id1"]
      },
     {"name": "You are now on floor 1",
-     "items": [""],
+     "items": [],
      "challenge": ["id2"]
      },
     {"name": "You are now on floor 2",

@@ -2,7 +2,7 @@ items = [
     {
         "id": "i1",
         "name": "chest",
-        "description": "a chest that you can open",
+        "description": "chest that you can open",
         "bonus_armor": 0,
         "lock": "puzzle",
         "contains": ["i2", "i3"],
@@ -16,7 +16,7 @@ items = [
     {
         "id": "i2",
         "name": "knife",
-        "description": "a small but sharp knife",
+        "description": "small but sharp knife",
         "bonus_armor": 0,
         "bonus_ap": 10,
         "usable": False,
@@ -30,10 +30,10 @@ items = [
     {
         "id": "i3",
         "name": "potion",
-        "description": "a health potion that can heal you",
+        "description": "health potion that heals you",
         "bonus_armor": 0,
         "bonus_ap": 0,
-        "heals": 10,
+        "heals": 100,
         "usable": True,
         "pick_up": True,
         "slot": None,
@@ -44,9 +44,9 @@ items = [
     {
         "id": "i4",
         "name": "sword",
-        "description": "a rusty sword",
+        "description": "rusty sword",
         "bonus_armor": 0,
-        "bonus_ap": 15,
+        "bonus_ap": 20,
         "usable": False,
         "pick_up": True,
         "slot": "hands",
@@ -58,8 +58,8 @@ items = [
     {
         "id": "i5",
         "name": "shield",
-        "description": "a wooden shield",
-        "bonus_armor": 5,
+        "description": "wooden shield",
+        "bonus_armor": 15,
         "bonus_ap": 0,
         "usable": False,
         "pick_up": True,
@@ -71,9 +71,9 @@ items = [
     },
     {
         "id": "i6",
-        "name": "mail armor",
-        "description": "a chain mail armor for your chest",
-        "bonus_armor": 5,
+        "name": "chainmail",
+        "description": "chain mail armor for your chest",
+        "bonus_armor": 10,
         "bonus_ap": 0,
         "usable": False,
         "pick_up": True,
@@ -85,9 +85,9 @@ items = [
     },
     {
         "id": "i7",
-        "name": "plate legs",
+        "name": "platelegs",
         "description": "heavy plate protection for your legs",
-        "bonus_armor": 7,
+        "bonus_armor": 15,
         "bonus_ap": 0,
         "usable": False,
         "pick_up": True,
@@ -99,12 +99,13 @@ items = [
     },
     {
         "id": "i8",
-        "name": "great axe",
-        "description": "a huge axe made for chopping something else than wood",
+        "name": "axe",
+        "description": "huge axe made for chopping something else than wood",
         "bonus_armor": 0,
-        "bonus_ap": 25,
+        "bonus_ap": 40,
         "usable": False,
         "pick_up": True,
+        "slot": "hands",
         "equippable": True,
         "container": False,
         "visible": True
@@ -112,12 +113,13 @@ items = [
     },
     {
         "id": "i9",
-        "name": "giants club",
-        "description": "a club made by a giant for a giant",
+        "name": "club",
+        "description": "club made for giants",
         "bonus_armor": 5,
         "bonus_ap": 35,
         "usable": False,
         "pick_up": True,
+        "slot": "hands",
         "equippable": True,
         "container": False,
         "visible": True
@@ -125,15 +127,87 @@ items = [
     },
     {
         "id": "i10",
-        "name": "giants shield",
-        "description": "a shield made by a giant for a giant",
+        "name": "shield",
+        "description": "a shield made for a giants",
         "bonus_armor": 35,
         "bonus_ap": 0,
         "usable": False,
         "pick_up": True,
+        "slot": "hands",
         "equippable": True,
         "container": False,
         "visible": True
 
     },
+    {
+        "id": "i11",
+        "name": "helm",
+        "description": "viking helmet with horns",
+        "bonus_armor": 10,
+        "bonus_ap": 10,
+        "usable": False,
+        "pick_up": True,
+        "slot": "helm",
+        "equippable": True,
+        "container": False,
+        "visible": True
+
+    },
+    {
+        "id": "i13",
+        "name": "teeth",
+        "description": "vampires teeth",
+        "bonus_armor": 0,
+        "bonus_ap": 5,
+        "usable": False,
+        "pick_up": True,
+        "slot": "helm",
+        "equippable": True,
+        "container": False,
+        "visible": True
+
+    },
+    {
+        "id": "i14",
+        "name": "horns",
+        "description": "horns from the demon",
+        "bonus_armor": 5,
+        "bonus_ap": 15,
+        "usable": False,
+        "pick_up": True,
+        "slot": "helm",
+        "equippable": True,
+        "container": False,
+        "visible": True
+
+    },
+    {
+        "id": "i15",
+        "name": "shield",
+        "description": "Shield forged by souls tormented in hell",
+        "bonus_armor": 30,
+        "bonus_ap": 10,
+        "usable": False,
+        "pick_up": True,
+        "slot": "helm",
+        "equippable": True,
+        "container": False,
+        "visible": True
+
+    },
+    {
+        "id": "i16",
+        "name": "Demon horns",
+        "description": "the horns from the demon",
+        "bonus_armor": 5,
+        "bonus_ap": 15,
+        "usable": False,
+        "pick_up": True,
+        "slot": "helm",
+        "equippable": True,
+        "container": False,
+        "visible": True
+
+    },
+
 ]

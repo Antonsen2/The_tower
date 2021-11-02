@@ -3,59 +3,59 @@ import random
 monsters = [
     {
         "id": ["id1"],
-        "name": "skeleton",
+        "name": "Skeleton",
         "hp": random.randrange(80, 120),
         "ap": 5,
-        "drop": ["i5"]
+        "drop": ["i5", "i3", "i11"]
 
     },
     {
         "id": ["id2"],
-        "name": "golem",
-        "hp": 150,
+        "name": "Zombie",
+        "hp": random.randrange(120, 170),
         "ap": 7,
         "drop": ["i4", "i3"]
 
     },
     {
         "id": ["id3"],
-        "name": "vampire",
-        "hp": 250,
+        "name": "Vampire",
+        "hp": random.randrange(200, 250),
         "ap": 10,
-        "drop": ["i3"]
+        "drop": ["i3", "i13", "i4"]
     },
     {
         "id": ["id4"],
-        "name": "giant",
-        "hp": 250,
+        "name": "Wraith",
+        "hp": random.randrange(270, 300),
         "ap": 10,
-        "drop": ["i6"]
+        "drop": ["i6", "i7", "i3"]
     },
     {
         "id": ["id5"],
-        "name": "giant",
-        "hp": 250,
+        "name": "Demon",
+        "hp": random.randrange(300, 350),
         "ap": 10,
-        "drop": ["i7", "i3"]
+        "drop": ["i3", "i8", "i14", "i15"]
     },
     {
         "id": ["id6"],
         "name": "giant",
-        "hp": 250,
-        "ap": 10,
-        "drop": ["i8", "i3"]
-    },
-    {
-        "id": ["id7"],
-        "name": "giant",
-        "hp": 250,
+        "hp": random.randrange(350, 400),
         "ap": 10,
         "drop": ["i9", "i10", "i3"]
     },
     {
+        "id": ["id7"],
+        "name": "Hydra",
+        "hp": random.randrange(400, 450),
+        "ap": 10,
+        "drop": []
+    },
+    {
         "id": ["id8"],
         "name": "Dragon",
-        "hp": 250,
+        "hp": 500,
         "ap": 10,
         "drop": [""]
     }

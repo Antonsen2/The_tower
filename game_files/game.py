@@ -16,23 +16,27 @@ class Game:
 
     def run(self):
         print("You can see all commands by typing: commands")
+        print("You have stepped in to a tower, the only way to exit is defeating all challenges")
         while self.running:
             self.update_floor_info()
             self.print_floor_info()
             self.user_input()
-        print("Thanks for playing the game_files")
+        print("Thanks for playing the game")
 
     def update_floor_info(self):
         if self.engage:
             self.fight.battle(self.player, self.floor_challenge.enemy)
-        if self.npc.hp <= 0:
-            self.engage = False
-            self.npc = None
+        if self.npc:
+            if self.npc.hp <= 0:
+                self.engage = False
+                self.npc = None
         self.floor_challenge = FloorChallenge(self.player.current_floor, self.npc)
+        if self.player.hp <= 0:
+            print("oh no, you died. game over!")
+            self.running = False
 
     def print_floor_info(self):
         current_floor = self.map.get_current_floor(self.player.current_floor)
-        print(current_floor.name)
         self.floor_challenge.print_current_challenge()
         if len(current_floor.items) >= 1:
             found_items = [item.name for item in current_floor.items if item.visible]
@@ -43,6 +47,7 @@ class Game:
             print("You can't go there")
         if self.player.current_floor != len(self.map.map2) - 1:
             self.player.current_floor += 1
+            print(self.map.get_current_floor(self.player.current_floor).name)
             self.npc = Npc(self.player.current_floor)
         else:
             print("You are on the top floor, you can't go any further")
@@ -84,6 +89,10 @@ class Game:
                     for item in items:
                         self.player.equip(item)
                         self.player.equipment.equipment_stats()
+                case ["unequip", *items]:
+                    for item in items:
+                        self.player.unequip(item)
+                        self.player.equipment.equipment_stats()
                 case ["equipped"] | ["character"] | ["stats"] | ["equipment"]:
                     self.player.equipment.print_equipment()
                 case ["open"] | ["open", "chest"]:
@@ -101,6 +110,7 @@ class Game:
         print("The commands to descend are: descend, climb down and down")
         print("The commands to check your inventory is: inventory, inv and bag")
         print("the command to equip something is equip and the item name")
+        print("the command to unequip something is unequip and the item name")
         print("the commands to check what items you have equipped and your stats is equipped, character and stats")
         print("the commands to open the chest is: open and open chest")
         print("The commands to fight is: fight, engage and attack")
