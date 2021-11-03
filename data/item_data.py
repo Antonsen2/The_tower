@@ -33,7 +33,7 @@ items = [
         "description": "health potion that heals you",
         "bonus_armor": 0,
         "bonus_ap": 0,
-        "heals": 100,
+        "heals": 50,
         "usable": True,
         "pick_up": True,
         "slot": None,
@@ -127,7 +127,7 @@ items = [
     },
     {
         "id": "i10",
-        "name": "shield",
+        "name": "bigshield",
         "description": "a shield made for a giants",
         "bonus_armor": 35,
         "bonus_ap": 0,
@@ -183,13 +183,13 @@ items = [
     },
     {
         "id": "i15",
-        "name": "shield",
+        "name": "redshield",
         "description": "Shield forged by souls tormented in hell",
         "bonus_armor": 30,
         "bonus_ap": 10,
         "usable": False,
         "pick_up": True,
-        "slot": "helm",
+        "slot": "hands",
         "equippable": True,
         "container": False,
         "visible": True
@@ -197,7 +197,7 @@ items = [
     },
     {
         "id": "i16",
-        "name": "Demon horns",
+        "name": "horns",
         "description": "the horns from the demon",
         "bonus_armor": 5,
         "bonus_ap": 15,
@@ -209,5 +209,18 @@ items = [
         "visible": True
 
     },
+    {
+        "id": "i17",
+        "name": "claw",
+        "description": "the hydras claw",
+        "bonus_armor": 5,
+        "bonus_ap": 60,
+        "usable": False,
+        "pick_up": True,
+        "slot": "hands",
+        "equippable": True,
+        "container": False,
+        "visible": True
+    }
 
 ]

@@ -16,8 +16,11 @@ class FloorChallenge:
     def print_current_challenge(self):
         if self.enemy:
             print("there is a", self.enemy.name, "standing in front of the stair to the next level")
-        else:
+        if not self.enemy and self.current_floor == 7:
+            print("The final boss is defeated, and the game is complete, good job! ")
+        if not self.enemy:
             print("The enemy is defeated you can now climb up")
+
 
     def chest_challenge(self):
         self.t.start()

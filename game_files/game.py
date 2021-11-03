@@ -1,3 +1,6 @@
+import pickle
+from os import listdir
+
 from game_files.character import Player, Npc
 from map import Map
 from game_files.fight import Fight
@@ -21,6 +24,9 @@ class Game:
             self.update_floor_info()
             self.print_floor_info()
             self.user_input()
+            self.game_complete()
+
+
         print("Thanks for playing the game")
 
     def update_floor_info(self):
@@ -34,6 +40,7 @@ class Game:
         if self.player.hp <= 0:
             print("oh no, you died. game over!")
             self.running = False
+
 
     def print_floor_info(self):
         current_floor = self.map.get_current_floor(self.player.current_floor)
@@ -99,10 +106,60 @@ class Game:
                     self.floor_challenge.open_chest(current_floor, self.player)
                 case ["fight"] | ["engage"] | ["attack"]:
                     self.engage = True
+                case ["save"]:
+                    self.save()
+                case ["load"]:
+                    self.load()
                 case ["quit"] | ["exit"] | ["stop"]:
                     self.running = False
                 case _:
                     print(f"I dont understand {command}, you can see a list of commands by typing commands")
+
+    def game_complete(self):
+        if self.player.current_floor == len(self.map.map2) - 1 and not self.npc:
+            self.running = False
+
+    def save(self):
+        file_name = input("What would you like to call this save? ")
+        file_name += '.tt'
+
+        data_to_save = {
+            'player': self.player,
+            'map': self.map
+        }
+
+        with open('./saved_games/' + file_name, 'wb') as save_file:
+            pickle.dump(data_to_save, save_file)
+
+    @staticmethod
+    def list_saved_games():
+        files = []
+        for f in listdir('./saved_games'):
+            if f.endswith('.tt'):
+                files.append(f.replace('.tt', ''))
+
+        files = [f.replace('.ttt', '') for f in listdir('./saved_games') if f.endswith('.tt')]
+
+        return files
+
+    def load(self):
+        saved_games = self.list_saved_games()
+
+        while True:
+            print("You have these games saved:")
+            for game in saved_games:
+                print(game)
+            file_name = input("What save would you like to load? ")
+            if file_name in saved_games:
+                break
+            print(f"{file_name} is not the name of a saved game")
+
+        file_name += '.taf'
+        with open('./saved_games/' + file_name, 'rb') as save_file:
+            loaded_data = pickle.load(save_file)
+
+        self.map = loaded_data['map']
+        self.player = loaded_data['player']
 
     @staticmethod
     def commands():

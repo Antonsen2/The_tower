@@ -1,32 +1,34 @@
-import random
+
 from game_files.utils import item_creator
 
 
 class Fight:
 
     def battle(self, player, npc):
-        print("You engage the enemy, you can attack the enemy or you can defend yourself from their attack")
-        while player.hp > 0 and npc.hp > 0:
-            damage_reduction = 100/(player.armor + 100)
-            npc_damage = random.randrange(1, npc.ap + 1) * damage_reduction
-            command = input("What would you like to do? ")
+        if npc:
+            print("You engage the enemy, you can attack the enemy or you can defend yourself from their attack")
+            while player.hp > 0 and npc.hp > 0:
+                damage_reduction = 100/(player.armor + 100)
+                npc_damage = npc.ap * damage_reduction
+                command = input("What would you like to do? ")
 
-            if len(command) > 0:
-                match command.lower().split():
-                    case ["attack"]:
-                        self.attack(npc, player, npc_damage)
-                    case ["defend"]:
-                        self.defend(npc, player, npc_damage)
+                if len(command) > 0:
+                    match command.lower().split():
+                        case ["attack"]:
+                            self.attack(npc, player, npc_damage)
+                        case ["defend"]:
+                            self.defend(npc, player, npc_damage)
 
-            if npc.hp <= 0:
-                print("Congratulations! You have defeated the boss")
-                self.boss_drop(player, npc)
+                if npc.hp <= 0:
+                    print("Congratulations! You have defeated the boss")
+                    self.boss_drop(player, npc)
+
 
     @staticmethod
     def boss_drop(player, npc):
         monster_drop = []
-        print(f"The {npc.name} dropped the following:")
         if npc.drop:
+            print(f"The {npc.name} dropped the following:")
             for item in npc.drop:
                 monster_drop.append(item_creator(item))
         for item in monster_drop:

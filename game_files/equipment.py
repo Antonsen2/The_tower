@@ -12,7 +12,7 @@ class Equipment:
     def print_equipment(self):
         equipment = [self.hands, self.head, self.chest, self.legs]
         print(f"your current attack power is {self.player.ap}")
-        print(f"your current hit points is {self.player.hp}")
+        print(f"your current hit points is {int(self.player.hp)}")
         print("You have the following equipped:")
         for i in equipment:
             for x in i.items:

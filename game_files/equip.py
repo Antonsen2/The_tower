@@ -8,6 +8,6 @@ class Equip:
     def equip(self, item):
         if len(self.items) < self.max_items:
             self.items.append(item)
-            print(f"you equip {item.name} to your {self.slot}")
+            print(f"you equip the {item.name} to your {self.slot}")
         else:
             print("There is no room to equip that")
