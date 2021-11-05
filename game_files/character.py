@@ -20,10 +20,10 @@ class Npc(Character):
 class Player(Character):
 
     def __init__(self):
-        super().__init__("Hero", 20, 200)
+        super().__init__("Hero", 30, 300)
         self.inventory = []
         self.current_floor = 0
-        self.armor = 0
+        self.armor = 30
         self.equipment = Equipment(self)
 
     def get_item(self, item_name, current_floor):
@@ -55,6 +55,7 @@ class Player(Character):
                     player.hp += i.heals
                     player.inventory.remove(i)
                     print(f"the potion heals you for {i.heals} hp")
+                    break
 
     def print_inventory(self):
         print("Your inventory contains: ")
@@ -86,16 +87,21 @@ class Player(Character):
                      self.equipment.chest.items, self.equipment.legs.items]
         for i in equipment:
             for x in i:
-                match x.slot:
-                    case "hands":
-                        self.equipment.hands.items.remove(x)
-                        self.inventory.append(x)
-                    case "helm":
-                        self.equipment.head.items.remove(x)
-                        self.inventory.append(x)
-                    case "chest":
-                        self.equipment.chest.items.remove(x)
-                        self.inventory.append(x)
-                    case "legs":
-                        self.equipment.legs.items.remove(x)
-                        self.inventory.append(x)
+                if item_name == x.name:
+                    match x.slot:
+                        case "hands":
+                            self.equipment.hands.items.remove(x)
+                            self.inventory.append(x)
+                            self.equipment.equipment_stats()
+                        case "helm":
+                            self.equipment.head.items.remove(x)
+                            self.inventory.append(x)
+                            self.equipment.equipment_stats()
+                        case "chest":
+                            self.equipment.chest.items.remove(x)
+                            self.inventory.append(x)
+                            self.equipment.equipment_stats()
+                        case "legs":
+                            self.equipment.legs.items.remove(x)
+                            self.inventory.append(x)
+                            self.equipment.equipment_stats()

@@ -12,31 +12,18 @@ class Equipment:
     def print_equipment(self):
         equipment = [self.hands, self.head, self.chest, self.legs]
         print(f"your current attack power is {self.player.ap}")
+        print(f"your current armor is {self.player.armor}")
         print(f"your current hit points is {int(self.player.hp)}")
         print("You have the following equipped:")
         for i in equipment:
             for x in i.items:
                 print(f"a {x.name} with {x.bonus_ap} bonus ap and {x.bonus_armor} bonus armor")
 
-
     def equipment_stats(self):
         equipment = [self.hands, self.head, self.chest, self.legs]
+        self.player.ap = 20
+        self.player.armor = 20
         for i in equipment:
             for x in i.items:
                 self.player.ap += x.bonus_ap
                 self.player.armor += x.bonus_armor
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

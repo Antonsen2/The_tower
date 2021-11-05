@@ -1,6 +1,4 @@
 from game_files.utils import item_creator
-from item import Item
-from data.item_data import items
 
 
 class Floor:
@@ -11,5 +9,3 @@ class Floor:
             if item_id:
                 floor_items.append(item_creator(item_id))
         self.items = floor_items
-
-

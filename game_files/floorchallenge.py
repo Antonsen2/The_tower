@@ -21,7 +21,6 @@ class FloorChallenge:
         if not self.enemy:
             print("The enemy is defeated you can now climb up")
 
-
     def chest_challenge(self):
         self.t.start()
         print("you have 2 minutes to answer this")
@@ -64,8 +63,8 @@ class FloorChallenge:
                     item.visible = False
                     current_floor.items.remove(item)
                     while chest_open and len(self.chest) > 0:
-                        for items in self.chest:
-                            print(f"the chest contains: a {items.name}")
+                        for item1 in self.chest:
+                            print(f"the chest contains: a {item1.name}")
                         command1 = input("You can get the items or close to chest: ")
 
                         match command1.lower().split():

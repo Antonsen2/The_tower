@@ -26,7 +26,6 @@ class Game:
             self.user_input()
             self.game_complete()
 
-
         print("Thanks for playing the game")
 
     def update_floor_info(self):
@@ -40,7 +39,6 @@ class Game:
         if self.player.hp <= 0:
             print("oh no, you died. game over!")
             self.running = False
-
 
     def print_floor_info(self):
         current_floor = self.map.get_current_floor(self.player.current_floor)
@@ -74,7 +72,7 @@ class Game:
             match command.lower().split():
                 case ["commands"]:
                     self.commands()
-                case ["climb"] | ["climb up"] | ["up"]:
+                case ["climb"] | ["climb", "up"] | ["up"]:
                     if not self.npc:
                         self.climb_up()
                     else:
@@ -99,7 +97,6 @@ class Game:
                 case ["unequip", *items]:
                     for item in items:
                         self.player.unequip(item)
-                        self.player.equipment.equipment_stats()
                 case ["equipped"] | ["character"] | ["stats"] | ["equipment"]:
                     self.player.equipment.print_equipment()
                 case ["open"] | ["open", "chest"]:
@@ -172,5 +169,3 @@ class Game:
         print("the commands to open the chest is: open and open chest")
         print("The commands to fight is: fight, engage and attack")
         print("The commands to stop the game_files are: quit, exit and stop")
-
-

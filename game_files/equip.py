@@ -4,7 +4,6 @@ class Equip:
         self.items = []
         self.max_items = max_items
 
-
     def equip(self, item):
         if len(self.items) < self.max_items:
             self.items.append(item)

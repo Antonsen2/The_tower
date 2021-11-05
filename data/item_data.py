@@ -10,8 +10,6 @@ items = [
         "equippable": False,
         "container": True,
         "visible": True
-
-
     },
     {
         "id": "i2",
@@ -25,7 +23,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i3",
@@ -53,7 +50,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i5",
@@ -67,7 +63,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i6",
@@ -81,7 +76,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i7",
@@ -95,7 +89,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i8",
@@ -109,7 +102,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i9",
@@ -123,7 +115,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i10",
@@ -137,7 +128,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i11",
@@ -151,7 +141,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i13",
@@ -165,7 +154,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i14",
@@ -179,7 +167,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i15",
@@ -193,7 +180,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i16",
@@ -207,7 +193,6 @@ items = [
         "equippable": True,
         "container": False,
         "visible": True
-
     },
     {
         "id": "i17",
