@@ -6,7 +6,7 @@ monsters = [
         "name": "Skeleton",
         "hp": random.randrange(80, 120),
         "ap": random.randrange(10, 15),
-        "drop": ["i3", "i11", "i5"]
+        "drop": ["i3", "i5"]
 
     },
     {
@@ -14,7 +14,7 @@ monsters = [
         "name": "Zombie",
         "hp": random.randrange(120, 170),
         "ap": random.randrange(20, 25),
-        "drop": ["i4", "i3"]
+        "drop": ["i11", "i3"]
 
     },
     {

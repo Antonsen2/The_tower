@@ -20,7 +20,7 @@ class Npc(Character):
 class Player(Character):
 
     def __init__(self):
-        super().__init__("Hero", 30, 300)
+        super().__init__("Hero", 30, 250)
         self.inventory = []
         self.current_floor = 0
         self.armor = 30

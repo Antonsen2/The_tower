@@ -26,7 +26,7 @@ class Fight:
     def boss_drop(player, npc):
         monster_drop = []
         if npc.drop:
-            print(f"The {npc.name} dropped the following:")
+            print(f"the {npc.name} dropped the following:")
             for item in npc.drop:
                 monster_drop.append(item_creator(item))
         for item in monster_drop:
@@ -39,7 +39,7 @@ class Fight:
         npc.hp -= player.ap
         print(f"you attack the {npc.name} with {int(player.ap)} damage")
         player.hp -= npc_damage
-        print(f"The {npc.name} attack you back dealing {int(npc_damage)} damage")
+        print(f"the {npc.name} attack you back dealing {int(npc_damage)} damage")
         if player.hp < 0:
             player.hp = 0
         if npc.hp < 0:

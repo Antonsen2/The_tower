@@ -144,8 +144,8 @@ items = [
     },
     {
         "id": "i13",
-        "name": "teeth",
-        "description": "vampires teeth",
+        "name": "tooth",
+        "description": "vampires tooth",
         "bonus_armor": 0,
         "bonus_ap": 5,
         "usable": False,

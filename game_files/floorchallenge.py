@@ -19,10 +19,11 @@ class FloorChallenge:
         if not self.enemy and self.current_floor == 7:
             print("The final boss is defeated, and the game is complete, good job! ")
         if not self.enemy:
-            print("The enemy is defeated you can now climb up")
+            print("The enemy is defeated and you can now climb up")
 
     def chest_challenge(self):
         self.t.start()
+        print("the chest have writing on it, it appears to be a riddle!")
         print("you have 2 minutes to answer this")
         while self.in_time or self.puzzle_complete:
             answer = input("The foolish man wastes me, The average man spends me,"

@@ -4,7 +4,7 @@ floors = [
      "challenge": ["id1"]
      },
     {"name": "You are now on floor 1",
-     "items": [],
+     "items": ["i4"],
      "challenge": ["id2"]
      },
     {"name": "You are now on floor 2",
